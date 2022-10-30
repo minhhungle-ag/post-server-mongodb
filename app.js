@@ -6,7 +6,17 @@ const postRouter = require('./api/Routes/post/post')
 const MONGO_DB_URI = require('./constants/mongoDb')
 const app = express()
 
-mongoose.connect(MONGO_DB_URI, () => console.log('mongoose connected'))
+;(async () => {
+    await mongoose
+        .connect(MONGO_DB_URI)
+        .then((result) => {
+            if (result) {
+                console.log(result)
+                console.log('Mongodb connected')
+            }
+        })
+        .catch((error) => console.log(error))
+})()
 
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({ extended: false }))
