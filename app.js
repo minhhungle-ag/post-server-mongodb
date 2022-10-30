@@ -11,7 +11,6 @@ const app = express()
         .connect(MONGO_DB_URI)
         .then((result) => {
             if (result) {
-                console.log(result)
                 console.log('Mongodb connected')
             }
         })
